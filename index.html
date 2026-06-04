@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Mobile-First absolute viewport configuration to prevent unwanted zooms on iOS -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>50 Años de Odilia Triviño - Invitación Especial</title>
+
+  <!-- Google Fonts Preconnect and loading with display=swap for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Favicon using a cake emoji as a data URI SVG -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
+
+  <!-- Main Stylesheet link -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Main JavaScript execution deferred -->
+  <script defer src="script.js"></script>
+</head>
+<body>
+
+  <!-- FIXED NAVIGATION HEADER -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="#hero" class="logo">O<span>50</span></a>
+      <button class="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="main-nav">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
+      </button>
+      <nav id="main-nav" class="nav-menu" aria-hidden="true">
+        <ul>
+          <li><a href="#hero" class="nav-link">Inicio</a></li>
+          <li><a href="#countdown" class="nav-link">Cuenta Regresiva</a></li>
+          <li><a href="#detalles" class="nav-link">Detalles</a></li>
+          <li><a href="#ubicacion" class="nav-link">Ubicación</a></li>
+          <li><a href="#video" class="nav-link">Mensaje</a></li>
+          <li><a href="#rsvp" class="nav-link">Confirmar</a></li>
+          <li><a href="#galeria" class="nav-link">Galería</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. HERO / PORTADA -->
+    <section id="hero" class="hero-section">
+      <!-- Particle effect canvas behind text -->
+      <canvas id="hero-canvas" class="hero-bg-canvas" aria-hidden="true"></canvas>
+      
+      <!-- Ambient decorative 50 in background -->
+      <div class="decor-50-bg" aria-hidden="true">50</div>
+      
+      <div class="hero-content">
+        <span class="hero-tagline reveal fade-in">CELEBREMOS JUNTOS LOS</span>
+        <h1 class="hero-title reveal fade-in" style="animation-delay: 0.2s; font-size: clamp(4rem, 15vw, 7.5rem); font-style: normal; font-weight: 300; margin-bottom: 0.5rem;">
+          50 Años
+        </h1>
+        <p class="hero-subtitle reveal fade-in" style="animation-delay: 0.4s; font-family: var(--font-display); font-style: italic; font-size: clamp(1.8rem, 6vw, 3.2rem); color: var(--color-gold); margin-bottom: 1.5rem; font-weight: 500;">
+          de Odilia Triviño
+        </p>
+        <div class="gold-separator reveal fade-in" style="animation-delay: 0.6s;">
+          <span class="line"></span>
+          <span class="star">✦</span>
+          <span class="line"></span>
+        </div>
+        <p class="hero-date reveal fade-in" style="animation-delay: 0.8s;">
+          25 • Julio • 2026
+        </p>
+      </div>
+
+      <!-- Pulse animated scroll arrow -->
+      <a href="#countdown" class="scroll-arrow" aria-label="Desplazarse a la cuenta regresiva">
+        <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </a>
+    </section>
+
+    <!-- 2. COUNTDOWN / CONTADOR REGRESIVO -->
+    <section id="countdown" class="countdown-section section-padding reveal-trigger">
+      <div class="container">
+        <h2 class="section-title reveal fade-in-up">El Gran Día se Acerca</h2>
+        <div class="title-underline"></div>
+        
+        <!-- Timer cards container -->
+        <div id="timer-container" class="timer-grid reveal fade-in-up" style="animation-delay: 0.2s;">
+          <div class="timer-card">
+            <span id="days" class="timer-num">00</span>
+            <span class="timer-label">DÍAS</span>
+          </div>
+          <div class="timer-card">
+            <span id="hours" class="timer-num">00</span>
+            <span class="timer-label">HORAS</span>
+          </div>
+          <div class="timer-card">
+            <span id="minutes" class="timer-num">00</span>
+            <span class="timer-label">MINUTOS</span>
+          </div>
+          <div class="timer-card">
+            <span id="seconds" class="timer-num">00</span>
+            <span class="timer-label">SEGUNDOS</span>
+          </div>
+          <p class="celebrationcontador">¡Para celebrar un gran cumpleaños a lo grande!</p>
+        </div>
+
+        <!-- Birthday announcement visible only when target date is reached -->
+        <div id="celebration-message" class="celebration-msg hidden">
+          <h3 class="celebration-text">¡Hoy es el gran día! 🎉</h3>
+          <p class="celebration-subtext">Acompáñanos a celebrar este momento irrepetible.</p>
+        </div>
+      </div>
+      <!-- Hidden canvas for countdown confetti -->
+      <canvas id="confetti-canvas" class="confetti-overlay" aria-hidden="true"></canvas>
+    </section>
+
+    <!-- 3. DETALLES DEL EVENTO -->
+    <section id="detalles" class="details-section section-padding reveal-trigger">
+      <div class="container">
+        <h2 class="section-title reveal fade-in-up">Los Detalles</h2>
+        <div class="title-underline"></div>
+        <p class="section-subtitle reveal fade-in-up" style="animation-delay: 0.1s;">
+          Todo lo que necesitas saber para acompañarnos en este dia mágico
+        </p>
+
+        <div class="details-grid">
+          <!-- Card 1: Fecha -->
+          <article class="detail-card reveal fade-in-up" style="animation-delay: 0.2s;">
+            <div class="card-icon" aria-hidden="true">
+              <!-- Calendar Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <h3 class="card-title">¿Cuándo?</h3>
+            <p class="card-desc highlight">Sábado, 25 de Julio de 2026</p>
+            <p class="card-subdesc">¡Guarda la fecha en tu calendario!</p>
+          </article>
+
+          <!-- Card 2: Hora -->
+          <article class="detail-card reveal fade-in-up" style="animation-delay: 0.3s;">
+            <div class="card-icon" aria-hidden="true">
+              <!-- Clock Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="card-title">¿A qué hora?</h3>
+            <p class="card-desc highlight">Recepción: 1:00 pm</p>
+            <p class="card-subdesc">Celebración y Brindis: 5:00 pm</p>
+            <p class="card-subdesc">Fin del Evento: 12:00 am</p>
+          </article>
+
+          <!-- Card 3: Dress Code -->
+          <article class="detail-card reveal fade-in-up" style="animation-delay: 0.4s;">
+            <div class="card-icon" aria-hidden="true">
+              <!-- Bow Tie / Suit Elegant SVG -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 6h16l-3.5 6 3.5 6H4l3.5-6L4 6z"></path>
+                <circle cx="12" cy="12" r="2.5" fill="currentColor"></circle>
+              </svg>
+            </div>
+            <h3 class="card-title">Código de Vestir</h3>
+            <p class="card-desc highlight">Estilo Mexicano</p>
+            <p class="card-subdesc">Te sugerimos llevar un toque mexicano en tu outfit para brillar con nosotros.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. UBICACIÓN / MAPA -->
+    <section id="ubicacion" class="location-section section-padding reveal-trigger">
+      <div class="container">
+        <h2 class="section-title reveal fade-in-up">¿Dónde nos encontramos?</h2>
+        <div class="title-underline"></div>
+        
+        <div class="location-content reveal fade-in-up" style="animation-delay: 0.2s;">
+          <p class="venue-name">Finca "La Mayor"</p>
+          <p class="venue-address">Vereda Soaga - Ubaté, Cundinamarca</p>
+          <p class="venue-tip" style="font-size: clamp(0.8rem, 2.5vw, 0.95rem); color: var(--color-rose); margin-top: 0.5rem; font-style: italic;">
+            🌾 Al ser una zona campestre, te recomendamos abrir el mapa para ver la ruta exacta.
+          </p>
+        </div>
+
+        <!-- Elegant Finca Photo Banner as dynamic fallback for rural coordinates -->
+        <div class="map-container reveal fade-in-up" style="animation-delay: 0.3s; position: relative;">
+          <a href="https://maps.app.goo.gl/vjHSo6CPWVHiBJjk8" target="_blank" rel="noopener" style="display: block; width: 100%; height: 100%;">
+            <img 
+              src="/images/finca_imagen.png" 
+              alt="Ilustración campestre de la Finca La Mayor" 
+              loading="lazy" 
+              decoding="async" 
+              style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            <!-- Elegant warm gradient overlay on top of the image to look premium -->
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(7, 13, 25, 0.8) 0%, transparent 100%); pointer-events: none;"></div>
+            <!-- Dynamic map marker label centered on image -->
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(7, 13, 25, 0.85); border: 1px solid var(--color-gold); padding: 12px 18px; border-radius: 30px; font-weight: 700; color: var(--color-gold); font-size: 0.9rem; display: flex; align-items: center; gap: 8px; backdrop-filter: blur(4px); pointer-events: none;">
+              <span>📍 Ver ubicación en Google Maps</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="location-action reveal fade-in-up" style="animation-delay: 0.4s;">
+          <!-- Custom maps redirect button (using configurations) -->
+          <a href="https://maps.app.goo.gl/vjHSo6CPWVHiBJjk8" target="_blank" rel="noopener" class="btn btn-gold">
+            <span>📍 Abrir en Google Maps</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. VIDEO DEL EVENTO / TEASER -->
+    <section id="video" class="video-section section-padding reveal-trigger">
+      <div class="container">
+        <h2 class="section-title reveal fade-in-up">Un Mensaje Especial</h2>
+        <div class="title-underline"></div>
+        <p class="section-subtitle reveal fade-in-up" style="animation-delay: 0.1s;">
+          Unas palabras antes del gran día
+        </p>
+
+        <!-- Video player wrapper -->
+        <div class="video-wrapper reveal fade-in-up" style="animation-delay: 0.2s;">
+          <!-- You can customize it to be YouTube embed or local mp4 video. Playsinline is critical for iOS Safari -->
+          <!-- YouTube template: -->
+          <iframe 
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" 
+            width="100%" 
+            height="100%"
+            style="aspect-ratio:16/9; border:0;" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen 
+            loading="lazy"
+            title="Video teaser o mensaje de invitación">
+          </iframe>
+
+          <!-- Fallback text structure inside code if iframe doesn't render or local video isn't loaded -->
+          <div class="video-fallback hidden">
+            <span class="fallback-icon">🎬</span>
+            <p>El video llegará pronto…</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CONFIRMACIÓN DE ASISTENCIA (RSVP) -->
+    <section id="rsvp" class="rsvp-section section-padding reveal-trigger">
+      <div class="container">
+        <h2 class="section-title reveal fade-in-up">Confirma tu Asistencia</h2>
+        <div class="title-underline"></div>
+        <p class="section-subtitle reveal fade-in-up" style="animation-delay: 0.1s;">
+          Tu presencia es nuestro mejor regalo 🎁
+        </p>
+
+        <div class="rsvp-form-container reveal fade-in-up" style="animation-delay: 0.2s;">
+          <!-- Form submits details directly to WhatsApp -->
+          <form id="rsvp-form" class="rsvp-form" novalidate>
+            <div class="form-group">
+              <label for="rsvp-name">Nombre Completo *</label>
+              <input 
+                type="text" 
+                id="rsvp-name" 
+                name="name" 
+                placeholder="Ingresa tu nombre y apellido" 
+                required 
+                autocomplete="name">
+              <span class="error-msg" id="name-error">El nombre es requerido.</span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="rsvp-guests">Nº Acompañantes</label>
+                <input 
+                  type="number" 
+                  id="rsvp-guests" 
+                  name="guests" 
+                  min="0" 
+                  max="10" 
+                  value="0" 
+                  placeholder="0">
+              </div>
+
+              <div class="form-group">
+                <label for="rsvp-status">¿Asistirás? *</label>
+                <select id="rsvp-status" name="status" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="si">Sí, asistiré con gusto</option>
+                  <option value="no">No podré asistir</option>
+                </select>
+                <span class="error-msg" id="status-error">Por favor selecciona tu estado.</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="rsvp-message">Mensaje Opcional</label>
+              <textarea 
+                id="rsvp-message" 
+                name="message" 
+                rows="3" 
+                placeholder="Dedícale unas palabras especiales a la cumpleañera..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-whatsapp" id="rsvp-submit">
+              <span>Enviar por WhatsApp 📲</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. GALERÍA / MEMORIES -->
+    <section id="galeria" class="gallery-section section-padding reveal-trigger">
+      <div class="container">
+        <h2 class="section-title reveal fade-in-up">Momentos Especiales</h2>
+        <div class="title-underline"></div>
+        <p class="section-subtitle reveal fade-in-up" style="animation-delay: 0.1s;">
+          Recuerdos entrañables de un maravilloso camino
+        </p>
+
+        <!-- Responsive CSS Grid of photos -->
+        <div class="gallery-grid reveal fade-in-up" style="animation-delay: 0.2s;">
+          <!-- Placesholders from picsum.photos with distinct IDs to simulate real images. Aspect-ratio 1:1, loading="lazy", decoding="async" -->
+          <div class="gallery-item">
+            <img src="https://picsum.photos/id/1025/600/600" alt="Recuerdo de juventud de Odilia" loading="lazy" decoding="async" class="gallery-img">
+            <div class="img-overlay">
+              <span class="zoom-icon">🔍</span>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="/images/7imagen.png" alt="Odilia en un viaje especial" loading="lazy" decoding="async" class="gallery-img">
+            <div class="img-overlay">
+              <span class="zoom-icon">🔍</span>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="/images/6imagen.png" alt="Momentos en familia con Odilia" loading="lazy" decoding="async" class="gallery-img">
+            <div class="img-overlay">
+              <span class="zoom-icon">🔍</span>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="/images/4imagen.png" alt="Odilia celebrando logros" loading="lazy" decoding="async" class="gallery-img">
+            <div class="img-overlay">
+              <span class="zoom-icon">🔍</span>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="/images/11imagen.png" alt="Sonrisas compartidas" loading="lazy" decoding="async" class="gallery-img">
+            <div class="img-overlay">
+              <span class="zoom-icon">🔍</span>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="/images/6imagen.png" alt="Odilia rodeada de flores" loading="lazy" decoding="async" class="gallery-img">
+            <div class="img-overlay">
+              <span class="zoom-icon">🔍</span>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="/images/10imagen.png" alt="Un gran momento" loading="lazy" decoding="async" class="gallery-img">
+            <div class="img-overlay">
+              <span class="zoom-icon">🔍</span>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="/images/5imagen.png" alt="Odilia en su dia" loading="lazy" decoding="async" class="gallery-img">
+            <div class="img-overlay">
+              <span class="zoom-icon">🔍</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 8. FOOTER / CIERRE -->
+  <footer class="app-footer">
+    <div class="container">
+      <p class="footer-love-msg">Con todo el amor del mundo para Odilia en su día especial</p>
+      
+      <!-- Flower/Decorative SVG in Gold -->
+      <div class="footer-decor" aria-hidden="true">
+        <svg viewBox="0 0 100 30" width="120" fill="none" stroke="currentColor" class="decor-svg">
+          <path d="M50,0 C55,10 65,15 90,15 C65,15 55,20 50,30 C45,20 35,15 10,15 C35,15 45,10 50,0 Z" stroke-width="1.5"></path>
+          <circle cx="50" cy="15" r="3" fill="currentColor"></circle>
+        </svg>
+      </div>
+
+      <p class="footer-credit">Un dia muy especial para celebrar la vida
+        - De parte de sus hijos
+      </p>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX FOR GALLERY IMAGES -->
+  <div id="lightbox" class="lightbox-overlay" aria-hidden="true" role="dialog" aria-label="Visualizador de fotos">
+    <button class="lightbox-close" aria-label="Cerrar visualizador">&times;</button>
+    
+    <button class="lightbox-nav lightbox-prev" aria-label="Foto anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="Imagen ampliada">
+      <p id="lightbox-caption" class="lightbox-caption"></p>
+    </div>
+    
+    <button class="lightbox-nav lightbox-next" aria-label="Siguiente foto">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+
+</body>
+</html>

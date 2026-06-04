@@ -1,0 +1,1246 @@
+/* ==========================================================================
+   1. CORE VARIABLES & DESIGN SYSTEM (MOBILE-FIRST)
+   ========================================================================== */
+:root {
+  /* Color Palette */
+  --color-gold: #D4AF37;
+  --color-gold-rgb: 212, 175, 55;
+  --color-cream: #FFF8F2;
+  --color-rose: #ffffff;
+  --color-sage: #5A7E64;
+  --color-bg: #070D19;
+  --color-bg-alt: #0F1A30;
+  --color-whatsapp: #25D366;
+  --color-whatsapp-hover: #20BA56;
+  --color-error: #FF6B6B;
+  
+  /* Semi-transparent colors for cards & elements */
+  --color-card-bg: rgba(201, 168, 76, 0.05);
+  --color-card-border: rgba(201, 168, 76, 0.2);
+  --color-card-border-glow: rgba(201, 168, 76, 0.4);
+  --color-overlay-bg: rgba(7, 13, 25, 0.95);
+  
+  /* Font Families */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Raleway', Helvetica, Arial, sans-serif;
+  
+  /* Timings & Transitions */
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+  --transition-fast: cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+}
+
+/* Base resets & setups */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%; /* 16px default browser size */
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* iOS Safari Smooth Scroll */
+main {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Basic helper containers */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1rem, 5vw, 2.5rem);
+  padding-right: clamp(1rem, 5vw, 2.5rem);
+}
+
+.section-padding {
+  padding-top: clamp(4rem, 15vw, 8rem);
+  padding-bottom: clamp(4rem, 15vw, 8rem);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   2. TYPOGRAPHY SYSTEM
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-cream);
+}
+
+h1 {
+  font-size: clamp(2.8rem, 10vw, 6rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Gold Underline Decoration for Section Titles */
+.title-underline {
+  width: 60px;
+  height: 2px;
+  background-color: var(--color-gold);
+  margin: 1rem auto 1.5rem;
+  position: relative;
+}
+
+.title-underline::after {
+  content: '✦';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-bg);
+  color: var(--color-gold);
+  font-size: 0.8rem;
+  padding: 0 0.4rem;
+}
+
+.section-subtitle {
+  font-size: clamp(0.95rem, 3.5vw, 1.25rem);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  color: var(--color-rose);
+  font-weight: 300;
+}
+
+/* Links & Buttons */
+a {
+  color: inherit;
+  text-decoration: none;
+  touch-action: manipulation; /* Removes 300ms mobile delay */
+}
+
+button {
+  font-family: var(--font-body);
+  border: none;
+  background: none;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+/* ==========================================================================
+   3. APP HEADER & NAVIGATION (MOBILE-FIRST)
+   ========================================================================== */
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(7, 13, 25, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: var(--transition-smooth);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: clamp(3.5rem, 8vh, 5rem);
+  padding: 0 clamp(1rem, 5vw, 2.5rem);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 5vw, 1.8rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-cream);
+}
+
+.logo span {
+  color: var(--color-gold);
+  font-size: 0.85em;
+  margin-left: 2px;
+}
+
+/* Hamburger toggle */
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 32px;
+  height: 20px;
+  z-index: 1010;
+  padding: 0;
+  position: relative;
+}
+
+.celebrationcontador{
+  display: flex;
+  flex-direction: column;
+}
+.bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-cream);
+  border-radius: 2px;
+  transition: transform var(--transition-fast), opacity var(--transition-fast), background-color var(--transition-fast);
+}
+
+/* Hamburger Active Transform */
+.menu-toggle[aria-expanded="true"] .bar-1 {
+  transform: translateY(9px) rotate(45deg);
+  background-color: var(--color-gold);
+}
+.menu-toggle[aria-expanded="true"] .bar-2 {
+  opacity: 0;
+}
+.menu-toggle[aria-expanded="true"] .bar-3 {
+  transform: translateY(-9px) rotate(-45deg);
+  background-color: var(--color-gold);
+}
+
+/* Nav Menu Full-screen overlay on Mobile (<900px) */
+.nav-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100svh; /* small viewport height for mobile browser bars */
+  background-color: var(--color-overlay-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform var(--transition-smooth), opacity var(--transition-smooth);
+  z-index: 1005;
+  pointer-events: none;
+}
+
+.nav-menu[aria-hidden="false"] {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-menu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.5rem, 5vh, 2.5rem);
+}
+
+.nav-link {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 6vw, 2.5rem);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-cream);
+  transition: color var(--transition-fast);
+  padding: 0.5rem 1rem;
+}
+
+/* Link active / touch feedback */
+.nav-link:active {
+  color: var(--color-gold);
+}
+
+/* Nav Menu responsive adjustments with media queries (Desktop) */
+@media (min-width: 900px) {
+  .menu-toggle {
+    display: none;
+  }
+  
+  .nav-menu {
+    position: static;
+    width: auto;
+    height: auto;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .nav-menu ul {
+    flex-direction: row;
+    gap: 1.8rem;
+  }
+  
+  .nav-link {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.3rem 0;
+    position: relative;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-gold);
+    transition: width var(--transition-fast);
+  }
+  
+  .nav-link:hover {
+    color: var(--color-gold);
+  }
+  
+  .nav-link:hover::after {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   4. HERO SECTION
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 5rem 1.5rem 4rem;
+}
+
+.hero-bg-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.decor-50-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 40vw, 20rem);
+  font-weight: 900;
+  color: var(--color-gold);
+  opacity: 0.07;
+  z-index: 2;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+}
+
+.hero-tagline {
+  font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+.hero-title {
+  font-style: italic;
+  margin-bottom: 0.8rem;
+  background: linear-gradient(135deg, var(--color-cream) 30%, var(--color-rose) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 0.2rem;
+}
+
+.gold-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem auto;
+}
+
+.gold-separator .line {
+  height: 1px;
+  width: clamp(2rem, 10vw, 4rem);
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+.gold-separator .star {
+  color: var(--color-gold);
+  font-size: 1.1rem;
+  animation: separator-pulse 3s infinite ease-in-out;
+}
+
+@keyframes separator-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 3.5vw, 1.6rem);
+  font-weight: 300;
+  color: var(--color-cream);
+  opacity: 0.9;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.hero-date {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 3.5vw, 1.8rem);
+  font-style: italic;
+  color: var(--color-gold);
+  letter-spacing: 0.1em;
+}
+
+/* Scroll Arrow base */
+.scroll-arrow {
+  position: absolute;
+  bottom: clamp(1.5rem, 4vh, 2.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold);
+  transition: color var(--transition-fast);
+}
+
+.arrow-svg {
+  width: 28px;
+  height: 28px;
+  animation: bounce-arrow 2s infinite ease-in-out;
+}
+
+@keyframes bounce-arrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ==========================================================================
+   5. COUNTDOWN / CONTADOR REGRESIVO
+   ========================================================================== */
+.countdown-section {
+  background: radial-gradient(circle at center, #1b1625 0%, var(--color-bg-alt) 100%);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(201, 168, 76, 0.1);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+}
+
+/* Elegant radial line-noise texture for countdown using pure CSS gradients */
+.countdown-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent 20%, var(--color-bg-alt) 80%),
+              repeating-linear-gradient(45deg, rgba(255,255,255,0.005) 0px, rgba(255,255,255,0.005) 1px, transparent 1px, transparent 10px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.countdown-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Countdown Grid: 2x2 on Mobile, 1x4 on Desktop */
+.timer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1rem, 4vw, 1.8rem);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.timer-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: 12px;
+  padding: clamp(1.2rem, 5vw, 2.2rem) clamp(0.8rem, 3vw, 1.5rem);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.timer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  opacity: 0.5;
+}
+
+.timer-num {
+  font-family: var(--font-body);
+  font-size: clamp(2.2rem, 9vw, 3.8rem);
+  font-weight: 300;
+  color: var(--color-gold);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.timer-label {
+  font-size: clamp(0.65rem, 2vw, 0.85rem);
+  font-weight: 600;
+  color: var(--color-cream);
+  letter-spacing: 0.15em;
+  opacity: 0.8;
+}
+
+@media (min-width: 600px) {
+  .timer-grid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 800px;
+  }
+}
+
+/* Celebration message styles */
+.celebration-msg {
+  text-align: center;
+  padding: 2rem 1rem;
+  border-radius: 12px;
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid var(--color-gold);
+  max-width: 600px;
+  margin: 0 auto;
+  animation: heart-pulse 2s infinite ease-in-out;
+}
+
+.celebration-text {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  color: var(--color-gold);
+  margin-bottom: 0.5rem;
+}
+
+.celebration-subtext {
+  font-size: clamp(0.95rem, 3vw, 1.2rem);
+  color: var(--color-cream);
+  opacity: 0.9;
+}
+
+.confetti-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+  display: none;
+}
+
+/* ==========================================================================
+   6. DETAILS SECTION
+   ========================================================================== */
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 5vw, 2.5rem);
+  margin-top: 1rem;
+}
+
+.detail-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: 16px;
+  padding: clamp(1.8rem, 7vw, 2.5rem) clamp(1.2rem, 5vw, 2rem);
+  text-align: center;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.card-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(201, 168, 76, 0.1);
+  color: var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.card-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 4vw, 1.6rem);
+  font-style: italic;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--color-rose);
+}
+
+.card-desc {
+  font-size: clamp(1rem, 3.5vw, 1.25rem);
+  font-weight: 600;
+  color: var(--color-cream);
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.card-desc.highlight {
+  color: var(--color-gold);
+}
+
+.card-subdesc {
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  color: var(--color-cream);
+  opacity: 0.75;
+  line-height: 1.5;
+  margin-top: 0.2rem;
+}
+
+/* Details grid layout sizes with media query */
+@media (min-width: 600px) {
+  .details-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* Center the 3rd card on tablets */
+  .detail-card:nth-child(3) {
+    grid-column: span 2;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 900px) {
+  .details-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .detail-card:nth-child(3) {
+    grid-column: auto;
+    max-width: 100%;
+  }
+
+  /* Elegant slight lift on desktop hover */
+  .detail-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-card-border-glow);
+    box-shadow: 0 10px 40px rgba(201, 168, 76, 0.1);
+  }
+  
+  .detail-card:hover .card-icon {
+    background: var(--color-gold);
+    color: var(--color-bg);
+  }
+}
+
+/* ==========================================================================
+   7. LOCATION SECTION
+   ========================================================================== */
+.location-section {
+  background-color: var(--color-bg-alt);
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.location-content {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 2rem;
+}
+
+.venue-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 4vw, 1.7rem);
+  font-weight: 600;
+  color: var(--color-gold);
+  margin-bottom: 0.5rem;
+}
+
+.venue-address {
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+/* Map Iframe Wrapper */
+.map-container {
+  width: 100%;
+  height: clamp(240px, 45vh, 450px);
+  border-radius: 16px;
+  border: 1px solid var(--color-card-border);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  position: relative;
+  background-color: var(--color-bg);
+}
+
+/* Buttons System */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  width: 100%;
+  padding: 0 1.8rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: transform var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-gold {
+  background-color: transparent;
+  color: var(--color-gold);
+  border: 1.5px solid var(--color-gold);
+}
+
+.btn-gold:active {
+  background-color: rgba(201, 168, 76, 0.1);
+  transform: scale(0.98);
+}
+
+.location-action {
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .btn {
+    width: auto;
+  }
+}
+
+@media (min-width: 900px) {
+  .btn-gold:hover {
+    background-color: var(--color-gold);
+    color: var(--color-bg);
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.4);
+    transform: translateY(-2px);
+  }
+}
+
+/* ==========================================================================
+   8. VIDEO SECTION
+   ========================================================================== */
+.video-wrapper {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  border-radius: 16px;
+  border: 1px solid var(--color-card-border);
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  background-color: var(--color-bg-alt);
+  position: relative;
+}
+
+.video-wrapper iframe {
+  display: block;
+}
+
+.video-fallback {
+  aspect-ratio: 16/9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.fallback-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: heart-pulse 2s infinite ease-in-out;
+}
+
+/* ==========================================================================
+   9. RSVP / CONFIRMATION SECTION
+   ========================================================================== */
+.rsvp-form-container {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: 16px;
+  padding: clamp(1.5rem, 6vw, 3rem);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 600px) {
+  .form-row {
+    flex-direction: row;
+  }
+  .form-row .form-group {
+    flex: 1;
+  }
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-rose);
+}
+
+/* Protection against iPhone Safari automatic input zooms (must be >= 16px) */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  font-family: var(--font-body);
+  font-size: 16px; 
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--color-cream);
+  padding: 14px 16px;
+  width: 100%;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 10px rgba(201, 168, 76, 0.15);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  /* Premium drop arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C9A84C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 18px;
+  padding-right: 48px;
+}
+
+select:invalid {
+  color: rgba(253, 248, 242, 0.4);
+}
+
+/* Select options explicit colors to prevent white text on white background bugs on mobile */
+select option {
+  background-color: #0F1A30 !important; /* var(--color-bg-alt) */
+  color: #FFF8F2 !important; /* var(--color-cream) */
+}
+
+/* Validation styling */
+.error-msg {
+  font-size: 0.8rem;
+  color: var(--color-error);
+  display: none;
+  margin-top: 0.2rem;
+}
+
+.form-group.invalid input,
+.form-group.invalid select {
+  border-color: var(--color-error);
+  box-shadow: 0 0 8px rgba(255, 107, 107, 0.15);
+}
+
+.form-group.invalid .error-msg {
+  display: block;
+}
+
+/* WhatsApp Button */
+.btn-whatsapp {
+  background-color: var(--color-whatsapp);
+  color: white;
+  margin-top: 0.5rem;
+  border: none;
+}
+
+.btn-whatsapp:active {
+  background-color: var(--color-whatsapp-hover);
+  transform: scale(0.98);
+}
+
+@media (min-width: 900px) {
+  .btn-whatsapp:hover {
+    background-color: var(--color-whatsapp-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+  }
+}
+
+/* ==========================================================================
+   10. GALLERY SECTION
+   ========================================================================== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(8px, 2vw, 16px);
+  margin-top: 1rem;
+}
+
+.gallery-item {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  background-color: var(--color-bg-alt);
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-smooth);
+}
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(13, 13, 13, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  pointer-events: none;
+}
+
+.zoom-icon {
+  font-size: 1.8rem;
+  color: var(--color-cream);
+  transform: scale(0.8);
+  transition: transform var(--transition-fast);
+}
+
+/* Mobile/Tablet active state replacement for hover */
+.gallery-item:active .img-overlay {
+  opacity: 1;
+}
+
+.gallery-item:active .zoom-icon {
+  transform: scale(1);
+}
+
+@media (min-width: 600px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .gallery-item:hover .gallery-img {
+    transform: scale(1.08);
+  }
+  
+  .gallery-item:hover .img-overlay {
+    opacity: 1;
+  }
+  
+  .gallery-item:hover .zoom-icon {
+    transform: scale(1);
+  }
+}
+
+/* ==========================================================================
+   11. FOOTER
+   ========================================================================== */
+.app-footer {
+  background-color: var(--color-bg);
+  border-top: 1px solid rgba(201, 168, 76, 0.1);
+  padding: clamp(3rem, 10vw, 5rem) 0;
+  text-align: center;
+}
+
+.footer-love-msg {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-rose);
+  margin-bottom: 1.5rem;
+}
+
+.footer-decor {
+  color: var(--color-gold);
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+.decor-svg {
+  display: block;
+  margin: 0 auto;
+}
+
+.footer-credit {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-cream);
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   12. LIGHTBOX DIALOG OVERLAY
+   ========================================================================== */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(7, 13, 25, 0.98);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-fast), visibility var(--transition-fast);
+  padding: 1.5rem;
+}
+
+.lightbox-overlay[aria-hidden="false"] {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+#lightbox-img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-caption {
+  margin-top: 1rem;
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
+  text-align: center;
+  color: var(--color-cream);
+  font-weight: 300;
+  max-width: 600px;
+}
+
+/* Clickable items inside lightbox minimum 44px for touch targets */
+.lightbox-close {
+  position: absolute;
+  top: clamp(1rem, 5vh, 2rem);
+  right: clamp(1rem, 5vw, 2rem);
+  width: 48px;
+  height: 48px;
+  color: var(--color-cream);
+  font-size: 2.2rem;
+  line-height: 48px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.lightbox-close:active {
+  background-color: rgba(201, 168, 76, 0.2);
+  color: var(--color-gold);
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  color: var(--color-cream);
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.lightbox-nav svg {
+  width: 24px;
+  height: 24px;
+}
+
+.lightbox-nav:active {
+  background-color: rgba(201, 168, 76, 0.2);
+  color: var(--color-gold);
+}
+
+.lightbox-prev {
+  left: clamp(0.5rem, 3vw, 2rem);
+}
+
+.lightbox-next {
+  right: clamp(0.5rem, 3vw, 2rem);
+}
+
+@media (min-width: 900px) {
+  .lightbox-close:hover,
+  .lightbox-nav:hover {
+    background-color: rgba(201, 168, 76, 0.2);
+    color: var(--color-gold);
+  }
+}
+
+/* ==========================================================================
+   13. SCROLL REVEAL ANIMATIONS (IntersectionObserver)
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(25px);
+  will-change: transform, opacity;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.fade-in {
+  transform: translateY(0);
+}
+
+.reveal.fade-in-up {
+  transform: translateY(35px);
+}
+
+/* Activated class */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes heart-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ==========================================================================
+   14. ACCESSIBILITY - PREFERS REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  .scroll-arrow .arrow-svg,
+  .gold-separator .star {
+    animation: none !important;
+  }
+}
