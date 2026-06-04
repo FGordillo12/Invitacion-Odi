@@ -104,8 +104,12 @@
             <span id="seconds" class="timer-num">00</span>
             <span class="timer-label">SEGUNDOS</span>
           </div>
-          <p class="celebrationcontador">¡Para celebrar un gran cumpleaños a lo grande!</p>
         </div>
+
+        <!-- Frase debajo del contador, ancho completo -->
+        <p class="celebrationcontador reveal fade-in-up" style="animation-delay: 0.4s;">
+          La cuenta regresiva ha comenzado para celebrar 50 años de amor, alegría y momentos que merecen ser recordados
+        </p>
 
         <!-- Birthday announcement visible only when target date is reached -->
         <div id="celebration-message" class="celebration-msg hidden">
@@ -262,7 +266,7 @@
           <!-- Form submits details directly to WhatsApp -->
           <form id="rsvp-form" class="rsvp-form" novalidate>
             <div class="form-group">
-              <label for="rsvp-name">Nombre Completo *</label>
+              <label for="rsvp-name">Tu Nombre *</label>
               <input 
                 type="text" 
                 id="rsvp-name" 
@@ -273,41 +277,17 @@
               <span class="error-msg" id="name-error">El nombre es requerido.</span>
             </div>
 
-            <div class="form-row">
-              <div class="form-group">
-                <label for="rsvp-guests">Nº Acompañantes</label>
-                <input 
-                  type="number" 
-                  id="rsvp-guests" 
-                  name="guests" 
-                  min="0" 
-                  max="10" 
-                  value="0" 
-                  placeholder="0">
-              </div>
-
-              <div class="form-group">
-                <label for="rsvp-status">¿Asistirás? *</label>
-                <select id="rsvp-status" name="status" required>
-                  <option value="" disabled selected>Selecciona una opción</option>
-                  <option value="si">Sí, asistiré con gusto</option>
-                  <option value="no">No podré asistir</option>
-                </select>
-                <span class="error-msg" id="status-error">Por favor selecciona tu estado.</span>
-              </div>
-            </div>
-
             <div class="form-group">
-              <label for="rsvp-message">Mensaje Opcional</label>
+              <label for="rsvp-message">Déjale un mensaje a Odilia</label>
               <textarea 
                 id="rsvp-message" 
                 name="message" 
-                rows="3" 
-                placeholder="Dedícale unas palabras especiales a la cumpleañera..."></textarea>
+                rows="4" 
+                placeholder="Escríbele unas palabras especiales a la cumpleañera..."></textarea>
             </div>
 
             <button type="submit" class="btn btn-whatsapp" id="rsvp-submit">
-              <span>Enviar por WhatsApp 📲</span>
+              <span>Confirmar por WhatsApp 📲</span>
             </button>
           </form>
         </div>
@@ -327,19 +307,19 @@
         <div class="gallery-grid reveal fade-in-up" style="animation-delay: 0.2s;">
           <!-- Placesholders from picsum.photos with distinct IDs to simulate real images. Aspect-ratio 1:1, loading="lazy", decoding="async" -->
           <div class="gallery-item">
-            <img src="https://picsum.photos/id/1025/600/600" alt="Recuerdo de juventud de Odilia" loading="lazy" decoding="async" class="gallery-img">
+            <img src="/images/12imagen.png" alt="Un momento en pareja" loading="lazy" decoding="async" class="gallery-img">
             <div class="img-overlay">
               <span class="zoom-icon">🔍</span>
             </div>
           </div>
           <div class="gallery-item">
-            <img src="/images/7imagen.png" alt="Odilia en un viaje especial" loading="lazy" decoding="async" class="gallery-img">
+            <img src="/images/7imagen.png" alt="Odilia en un lugar especial" loading="lazy" decoding="async" class="gallery-img">
             <div class="img-overlay">
               <span class="zoom-icon">🔍</span>
             </div>
           </div>
           <div class="gallery-item">
-            <img src="/images/6imagen.png" alt="Momentos en familia con Odilia" loading="lazy" decoding="async" class="gallery-img">
+            <img src="/images/6imagen.png" alt="Momentos en familia" loading="lazy" decoding="async" class="gallery-img">
             <div class="img-overlay">
               <span class="zoom-icon">🔍</span>
             </div>
@@ -357,7 +337,7 @@
             </div>
           </div>
           <div class="gallery-item">
-            <img src="/images/6imagen.png" alt="Odilia rodeada de flores" loading="lazy" decoding="async" class="gallery-img">
+            <img src="/images/3imagen.png" alt="Odilia rodeada de flores" loading="lazy" decoding="async" class="gallery-img">
             <div class="img-overlay">
               <span class="zoom-icon">🔍</span>
             </div>

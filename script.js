@@ -516,73 +516,43 @@ function initRSVPForm() {
   const form = document.getElementById("rsvp-form");
   if (!form) return;
 
-  const nameInput = document.getElementById("rsvp-name");
-  const guestsInput = document.getElementById("rsvp-guests");
-  const statusSelect = document.getElementById("rsvp-status");
+  const nameInput    = document.getElementById("rsvp-name");
   const messageInput = document.getElementById("rsvp-message");
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-
-    if (validateForm()) {
-      sendRSVPToWhatsApp();
-    }
+    if (validateForm()) sendRSVPToWhatsApp();
   });
 
-  // Remover marcas de error al escribir/cambiar valores
   nameInput.addEventListener("input", () => {
     nameInput.parentElement.classList.remove("invalid");
   });
-  statusSelect.addEventListener("change", () => {
-    statusSelect.parentElement.classList.remove("invalid");
-  });
 
   function validateForm() {
-    let isValid = true;
-
-    // Validar Nombre
     if (nameInput.value.trim() === "") {
       nameInput.parentElement.classList.add("invalid");
-      isValid = false;
-    } else {
-      nameInput.parentElement.classList.remove("invalid");
+      return false;
     }
-
-    // Validar Estado de Asistencia
-    if (statusSelect.value === "") {
-      statusSelect.parentElement.classList.add("invalid");
-      isValid = false;
-    } else {
-      statusSelect.parentElement.classList.remove("invalid");
-    }
-
-    return isValid;
+    nameInput.parentElement.classList.remove("invalid");
+    return true;
   }
 
   function sendRSVPToWhatsApp() {
-    const name = nameInput.value.trim();
-    const guests = guestsInput.value || "0";
-    const statusText = statusSelect.options[statusSelect.selectedIndex].text;
-    const optionalMsg = messageInput.value.trim();
+    const name       = nameInput.value.trim();
+    const userMsg    = messageInput.value.trim();
 
-    // Estructurar el mensaje para enviar
-    let messageText = `✨ *CONFIRMACIÓN DE ASISTENCIA* ✨\n\n`;
-    messageText += `Hola, quiero confirmar mi asistencia a los 50 años de *${EVENT_CONFIG.momName}*.\n\n`;
-    messageText += `👤 *Nombre:* ${name}\n`;
-    messageText += `👥 *Acompañantes:* ${guests}\n`;
-    messageText += `💌 *Asistencia:* ${statusText}\n`;
-    
-    if (optionalMsg !== "") {
-      messageText += `📝 *Mensaje:* "${optionalMsg}"\n`;
+    let messageText  = `🎂 *CONFIRMACIÓN DE ASISTENCIA* 🎂\n\n`;
+    messageText     += `Hola, confirmo que asistiré a la celebración de los 50 años de *${EVENT_CONFIG.momName}* 🥂\n\n`;
+    messageText     += `👤 *Nombre:* ${name}\n`;
+
+    if (userMsg !== "") {
+      messageText   += `\n💛 *Mensaje para Odilia:*\n"${userMsg}"\n`;
     }
 
-    messageText += `\n¡Nos vemos pronto! 🥂`;
+    messageText += `\n¡Hasta pronto! 🌸`;
 
-    // Codificar mensaje para la URL
     const encodedMessage = encodeURIComponent(messageText);
-    const whatsappUrl = `https://wa.me/${EVENT_CONFIG.whatsappNumber}?text=${encodedMessage}`;
-
-    // Abrir WhatsApp en una nueva pestaña/app móvil
+    const whatsappUrl    = `https://wa.me/${EVENT_CONFIG.whatsappNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
   }
 }
