@@ -13,7 +13,7 @@ const EVENT_CONFIG = {
   
   // Número de WhatsApp del organizador en formato internacional sin "+" ni espacios
   // Ej: "573001234567" (Código país + número)
-  whatsappNumber: "573001234567",
+  whatsappNumber: "573233217261",
   
   // Ubicación del mapa en el botón de redirección
   mapsUrl: "https://maps.app.goo.gl/vjHSo6CPWVHiBJjk8",
