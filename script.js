@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeroParallax();
   initGalleryLightbox();
   initRSVPForm();
+  initVideoAutoplay();
 });
 
 /**
@@ -555,4 +556,29 @@ function initRSVPForm() {
     const whatsappUrl    = `https://wa.me/${EVENT_CONFIG.whatsappNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
   }
+}
+
+/**
+ * ==========================================================================
+ * 9. VIDEO AUTOPLAY AL HACER SCROLL (estilo TikTok)
+ * ==========================================================================
+ */
+function initVideoAutoplay() {
+  const video = document.getElementById("event-video");
+  if (!video) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        video.play().catch(() => {
+          // Algunos navegadores bloquean autoplay sin interacción
+          // En ese caso el usuario toca play manualmente
+        });
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.5 }); // Se activa cuando el 50% del video es visible
+
+  observer.observe(video);
 }

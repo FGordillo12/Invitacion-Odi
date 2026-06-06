@@ -217,37 +217,28 @@
     </section>
 
     <!-- 5. VIDEO DEL EVENTO / TEASER -->
-    <section id="video" class="video-section section-padding reveal-trigger">
-      <div class="container">
-        <h2 class="section-title reveal fade-in-up">Un Mensaje Especial</h2>
-        <div class="title-underline"></div>
-        <p class="section-subtitle reveal fade-in-up" style="animation-delay: 0.1s;">
-          Unas palabras antes del gran día
-        </p>
+<section id="video" class="video-section section-padding reveal-trigger">
+  <div class="container">
+    <h2 class="section-title reveal fade-in-up">Un Mensaje Especial</h2>
+    <div class="title-underline"></div>
+    <p class="section-subtitle reveal fade-in-up" style="animation-delay: 0.1s;">
+      Unas palabras antes del gran día
+    </p>
 
-        <!-- Video player wrapper -->
-        <div class="video-wrapper reveal fade-in-up" style="animation-delay: 0.2s;">
-          <!-- You can customize it to be YouTube embed or local mp4 video. Playsinline is critical for iOS Safari -->
-          <!-- YouTube template: -->
-          <iframe 
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" 
-            width="100%" 
-            height="100%"
-            style="aspect-ratio:16/9; border:0;" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen 
-            loading="lazy"
-            title="Video teaser o mensaje de invitación">
-          </iframe>
-
-          <!-- Fallback text structure inside code if iframe doesn't render or local video isn't loaded -->
-          <div class="video-fallback hidden">
-            <span class="fallback-icon">🎬</span>
-            <p>El video llegará pronto…</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="video-wrapper reveal fade-in-up" style="animation-delay: 0.2s;">
+      <video
+        id="event-video"
+        src="/video/INV_ODILIA.mp4"
+        playsinline
+        muted
+        loop
+        preload="metadata"
+        controls
+        style="width:100%; border-radius:12px; display:block;">
+      </video>
+    </div>
+  </div>
+</section>
 
     <!-- 6. CONFIRMACIÓN DE ASISTENCIA (RSVP) -->
     <section id="rsvp" class="rsvp-section section-padding reveal-trigger">
