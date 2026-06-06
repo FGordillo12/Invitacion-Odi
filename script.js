@@ -581,14 +581,5 @@ function initVideoAutoplay() {
   }, { threshold: 0.5 }); // Se activa cuando el 50% del video es visible
 
   observer.observe(video);
-  function activarSonido() {
-  const video = document.getElementById("event-video");
-  const btn   = document.getElementById("video-sound-btn");
-  if (!video) return;
-
-  video.muted = false;
-  video.play();
-
-  if (btn) btn.style.display = "none"; // oculta el botón tras activar
-}
+  
 }
