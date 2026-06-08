@@ -1264,22 +1264,33 @@ select option {
 }
 
 .rsvp-opcion {
-  border: 1px solid var(--gold-border);
+  border: 1.5px solid var(--gold-border);
   border-radius: 12px;
-  padding: 14px 10px;
+  padding: 16px 12px;
   text-align: center;
   font-family: 'Raleway', sans-serif;
   font-size: clamp(0.85rem, 3vw, 0.95rem);
   font-weight: 600;
   color: var(--color-cream);
-  transition: all 0.25s;
-  background: var(--bg-card);
+  transition: all 0.3s ease;
+  background: rgba(255,255,255,0.04);
   text-transform: none;
+  cursor: pointer;
+  box-shadow: 0 0 0 1px rgba(201,168,76,0.15),
+              inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.rsvp-opcion:hover {
+  border-color: var(--color-gold);
+  background: rgba(201,168,76,0.08);
+  box-shadow: 0 0 12px rgba(201,168,76,0.15),
+              inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 input[type="radio"]:checked + .rsvp-opcion {
   border-color: var(--color-gold);
+  border-width: 2px;
   background: rgba(201,168,76,0.15);
   color: var(--color-gold);
-  box-shadow: 0 0 14px rgba(201,168,76,0.2);
+  box-shadow: 0 0 18px rgba(201,168,76,0.25),
+              inset 0 0 12px rgba(201,168,76,0.05);
 }
