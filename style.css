@@ -1269,11 +1269,12 @@ select option {
   padding: 14px 10px;
   text-align: center;
   font-family: 'Raleway', sans-serif;
-  font-size: clamp(0.85rem, 3vw, 1rem);
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
   font-weight: 600;
   color: var(--color-cream);
   transition: all 0.25s;
   background: var(--bg-card);
+  text-transform: none;
 }
 
 input[type="radio"]:checked + .rsvp-opcion {
