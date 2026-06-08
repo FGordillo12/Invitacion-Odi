@@ -517,45 +517,42 @@ function initRSVPForm() {
   const form = document.getElementById("rsvp-form");
   if (!form) return;
 
-  const nameInput    = document.getElementById("rsvp-name");
-  const messageInput = document.getElementById("rsvp-message");
+  const nameInput = document.getElementById("rsvp-name");
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    if (validateForm()) sendRSVPToWhatsApp();
+    const nombre = nameInput.value.trim();
+    const asistencia = form.querySelector('input[name="asistencia"]:checked');
+
+    let valido = true;
+
+    if (!nombre) {
+      nameInput.parentElement.classList.add("invalid");
+      valido = false;
+    } else {
+      nameInput.parentElement.classList.remove("invalid");
+    }
+
+    if (!asistencia) {
+      document.getElementById("asistencia-error").style.display = "block";
+      valido = false;
+    } else {
+      document.getElementById("asistencia-error").style.display = "none";
+    }
+
+    if (!valido) return;
+
+    const respuesta = asistencia.value === "si"
+      ? "✅ SÍ asistiré con mucho gusto"
+      : "❌ Lamentablemente NO podré asistir";
+
+    const texto = `🎂 *CONFIRMACIÓN DE ASISTENCIA* 🎂\n\n👤 *Nombre:* ${nombre}\n${respuesta}\n\n¡Hasta pronto! 🌸`;
+    window.open(`https://wa.me/${EVENT_CONFIG.whatsappNumber}?text=${encodeURIComponent(texto)}`, "_blank");
   });
 
   nameInput.addEventListener("input", () => {
     nameInput.parentElement.classList.remove("invalid");
   });
-
-  function validateForm() {
-    if (nameInput.value.trim() === "") {
-      nameInput.parentElement.classList.add("invalid");
-      return false;
-    }
-    nameInput.parentElement.classList.remove("invalid");
-    return true;
-  }
-
-  function sendRSVPToWhatsApp() {
-    const name       = nameInput.value.trim();
-    const userMsg    = messageInput.value.trim();
-
-    let messageText  = `🎂 *CONFIRMACIÓN DE ASISTENCIA* 🎂\n\n`;
-    messageText     += `Hola, confirmo que asistiré a la celebración de los 50 años de *${EVENT_CONFIG.momName}* 🥂\n\n`;
-    messageText     += `👤 *Nombre:* ${name}\n`;
-
-    if (userMsg !== "") {
-      messageText   += `\n💛 *Mensaje para Odilia:*\n"${userMsg}"\n`;
-    }
-
-    messageText += `\n¡Hasta pronto! 🌸`;
-
-    const encodedMessage = encodeURIComponent(messageText);
-    const whatsappUrl    = `https://wa.me/${EVENT_CONFIG.whatsappNumber}?text=${encodedMessage}`;
-    window.open(whatsappUrl, "_blank");
-  }
 }
 
 /**

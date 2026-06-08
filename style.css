@@ -1262,3 +1262,23 @@ select option {
     animation: none !important;
   }
 }
+
+.rsvp-opcion {
+  border: 1px solid var(--gold-border);
+  border-radius: 12px;
+  padding: 14px 10px;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(0.85rem, 3vw, 1rem);
+  font-weight: 600;
+  color: var(--color-cream);
+  transition: all 0.25s;
+  background: var(--bg-card);
+}
+
+input[type="radio"]:checked + .rsvp-opcion {
+  border-color: var(--color-gold);
+  background: rgba(201,168,76,0.15);
+  color: var(--color-gold);
+  box-shadow: 0 0 14px rgba(201,168,76,0.2);
+}
