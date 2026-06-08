@@ -543,19 +543,19 @@ function initRSVPForm() {
     if (!valido) return;
 
     const respuesta = asistencia.value === "si"
-      ? "✅ Si asistiré con mucho gusto"
-      : "❌ Lamentablemente no podré asistir";
+      ? "Si asistiré con mucho gusto"
+      : "Lamentablemente no podré asistir";
 
     const texto = [
-  `🎊 *INVITACIÓN 50 AÑOS — ODILIA TRIVIÑO* 🎊`,
+  `*INVITACIÓN 50 AÑOS — ODILIA TRIVIÑO* `,
   ``,
   `Hola, les escribo desde la invitación digital.`,
   ``,
-  `👤 *Nombre:* ${nombre}`,
+  ` *Nombre:* ${nombre}`,
   ``,
   respuesta,
   ``,
-  `_Enviado desde la invitación oficial_ ✨`
+  `Enviado desde la invitación oficial `
 ].join("\n");
     window.open(`https://wa.me/${EVENT_CONFIG.whatsappNumber}?text=${encodeURIComponent(texto)}`, "_blank");
   });
