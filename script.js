@@ -581,5 +581,4 @@ function initVideoAutoplay() {
   }, { threshold: 0.5 }); // Se activa cuando el 50% del video es visible
 
   observer.observe(video);
-  
 }
